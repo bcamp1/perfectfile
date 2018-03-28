@@ -4,23 +4,41 @@
 #include <stdio.h>
 using namespace std;
 
-const int crn = 0;
-const int pref = 1;
-const int crs = 2;
-const int title = 3;
-const int cr = 4;
-const int days = 5;
-const int startTime = 6;
-const int endTime = 7;
-const int room = 8;
-const int cap = 9;
-const int startDate = 10;
-const int endDate = 11;
-const int lastName = 12;
-const int firstName = 13;
-const int courseNotes = 14;
+const int CRN = 0;
+const int PREF = 1;
+const int CRS = 2;
+const int TITLE = 3;
+const int CR = 4;
+const int DAYS = 5;
+const int STARTTIME = 6;
+const int ENDTIME = 7;
+const int ROOM = 8;
+const int CAP = 9;
+const int STARTDATE = 10;
+const int ENDDATE = 11;
+const int LASTNAME = 12;
+const int FIRSTNAME = 13;
+const int COURSENOTES = 14;
 
-string master[15][500];
+const int MAX = 100;
+const int COLS = 15;
+
+string master[COLS][MAX];
+
+const string ORDER[COLS] = {"CRN", "PREF","CRS", "TITLE", "CR", "DAYS", "STARTTIME", "ENDTIME", "ROOM", "CAP", "STARTDATE", "ENDDATE", "LASTNAME", "FIRSTNAME", "COURSENOTES"};
+
+// printMaster prints the master array out
+void printMaster() {
+	for (int col = 0; col < COLS; col++) {
+		cout << "=====" << ORDER[col] << "=====" << endl;
+		for (int row = 0; row < MAX; row++) {
+			if (master[col][row] != "NONE") {
+				cout << master[col][row] << endl;
+			}
+		}
+		cout << endl << endl; // for formatting
+	}
+}
 
 // convert time to military time
 string toMilitary(string time) {
@@ -62,11 +80,13 @@ string toMilitary(string time) {
 }
 
 int main() {
-	cout << toMilitary("0230AM") << endl;
-	cout << toMilitary("0230PM") << endl;
-	cout << toMilitary("1230AM") << endl;
-	cout << toMilitary("0930PM") << endl;
-	cout << toMilitary("0230AM") << endl;
-	cout << toMilitary("0230AM") << endl;
+	// initialize array elements
+	for (int i = 0; i < COLS; i++) {
+		for (int j = 0; j < MAX; j++) {
+			master[i][j] = "NONE"; // Initialize with NONE so we will know if something is wrong
+		}
+	}
+
+	printMaster();
     return 0;
 }
