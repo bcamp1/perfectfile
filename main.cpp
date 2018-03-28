@@ -36,5 +36,21 @@ string toMilitary(string time) {
 }
 
 int main() {
+        string crnArray [500];
+        string prefArray [500];
+        string crsArray [500];
+        string titleArray [500];
+        string crArray [500];
+        string daysArray [500];
+        string startTimeArray [500];
+        string endTimeArray [500];
+        string room [500];
+        string cap [500];
+        string startDate [500];
+        string endDate [500];
+        string lastName [500];
+        string firstName [500];
+        string courseNotes [500];
+
     return 0;
 }
