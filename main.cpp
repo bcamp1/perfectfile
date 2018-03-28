@@ -24,8 +24,6 @@ string master[15][500];
 
 // convert time to military time
 string toMilitary(string time) {
-    string newTime; // We will return this
-
     // -------------Checks--------------
 
     // Check if TBA
@@ -39,20 +37,36 @@ string toMilitary(string time) {
         return "0";
     }
 
+	//-------------Conversion-------------
     string numberstr = time.substr(0, 4); // example 0150
     string suffix = time.substr(4, 2);  // example PM
 
-    int numbers = stoi(numberstr);
+	int numbers = stoi(numberstr);
 
     if (suffix == "am" || suffix == "AM") {
-        return to_string(numbers-1200);
-    } else {
+    	if (numbers >= 1200) {
+			return to_string(numbers-1200);
+		} else {
+			return to_string(numbers);
+		}
+    } else if (suffix == "pm" || suffix == "PM") {
+		if (numbers >= 1200) {
+			return to_string(numbers);
+		} else {
+			return to_string(numbers+1200);
+		}
         return to_string(numbers);
     }
-
-    return newTime;
+	cout << suffix << endl;
+	return "ERROR";
 }
 
 int main() {
+	cout << toMilitary("0230AM") << endl;
+	cout << toMilitary("0230PM") << endl;
+	cout << toMilitary("1230AM") << endl;
+	cout << toMilitary("0930PM") << endl;
+	cout << toMilitary("0230AM") << endl;
+	cout << toMilitary("0230AM") << endl;
     return 0;
 }
