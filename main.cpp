@@ -4,6 +4,24 @@
 #include <stdio.h>
 using namespace std;
 
+const int crn = 0;
+const int pref = 1;
+const int crs = 2;
+const int title = 3;
+const int cr = 4;
+const int days = 5;
+const int startTime = 6;
+const int endTime = 7;
+const int room = 8;
+const int cap = 9;
+const int startDate = 10;
+const int endDate = 11;
+const int lastName = 12;
+const int firstName = 13;
+const int courseNotes = 14;
+
+string master[15][500];
+
 // convert time to military time
 string toMilitary(string time) {
     string newTime; // We will return this
@@ -36,21 +54,5 @@ string toMilitary(string time) {
 }
 
 int main() {
-        string crnArray [500];
-        string prefArray [500];
-        string crsArray [500];
-        string titleArray [500];
-        string crArray [500];
-        string daysArray [500];
-        string startTimeArray [500];
-        string endTimeArray [500];
-        string room [500];
-        string cap [500];
-        string startDate [500];
-        string endDate [500];
-        string lastName [500];
-        string firstName [500];
-        string courseNotes [500];
-
     return 0;
 }
