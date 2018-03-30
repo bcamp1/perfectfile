@@ -2,6 +2,7 @@
 #include <string>
 #include <stdlib.h>
 #include <stdio.h>
+#include <fstream>
 using namespace std;
 
 const int CRN = 0;
@@ -26,6 +27,8 @@ const int COLS = 15;
 string master[COLS][MAX];
 
 const string ORDER[COLS] = {"CRN", "PREF","CRS", "TITLE", "CR", "DAYS", "STARTTIME", "ENDTIME", "ROOM", "CAP", "STARTDATE", "ENDDATE", "LASTNAME", "FIRSTNAME", "COURSENOTES"};
+
+int indexes[COLS]; // This would be the index of each "important" column in the file being read in
 
 // printMaster prints the master array out
 void printMaster() {
@@ -87,6 +90,23 @@ int main() {
 		}
 	}
 
-	printMaster();
+	printMaster(); // This should be empty
+
+	//---------------------------------READ RAW DATA FROM FILE-----------------------------------
+	ifstream fin;
+	fin.open("psy.csv")
+
+	if (!fin) {
+		cout << "Unable to open file" << endl;
+	}
+
+	// Get each cell
+	string cell;
+
+	while (fin >> cell) {
+		// Do the stuff
+		
+	}
+
     return 0;
 }
