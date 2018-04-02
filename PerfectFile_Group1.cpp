@@ -99,6 +99,18 @@ string toMilitary(string time) {
 	return "ERROR";
 }
 
+void writeToMaster(string filename) {
+	ofstream fout;
+	fout.open(filename);
+	for (int row = 0; row < MAX; row++) {
+		for (int col = 0; col < COLS; col++) {
+			if (master[col][row] != "NONE") {
+				fout << master[col][row] << ",";
+			}
+		}
+	}
+}
+
 int main() {
 	// initialize array elements
 	for (int i = 0; i < COLS; i++) {
@@ -194,8 +206,8 @@ int main() {
 
 
 	//---------------------------------Last Step(?) - write to master file------------------------
-	ofstream fout;
-	printMaster();
 
+	printMaster();
+	writeToMaster("master-test.csv");
     return 0;
 }
