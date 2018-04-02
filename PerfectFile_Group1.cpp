@@ -111,7 +111,7 @@ void writeToMaster(string filename) {
 	}
 }
 
-int main() {
+int main(int argc, char* argv[]) {
 	// initialize array elements
 	for (int i = 0; i < COLS; i++) {
 		for (int j = 0; j < MAX; j++) {
