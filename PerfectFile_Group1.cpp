@@ -30,6 +30,8 @@ const string ORDER[COLS] = {"CRN", "PREF","CRS", "TITLE", "CR", "DAYS", "ST TM",
 
 int indexes[COLS]; // This would be the index of each "important" column in the file being read in
 
+string FILENAME;
+
 int getHeader(int index) {
 	for (int i = 0; i < COLS; i++) {
 		if (indexes[i] == index) {
@@ -71,7 +73,9 @@ string toMilitary(string time) {
 
     // Check if length is correct
     if (time.length() != 6) {
-        cout << "Time format is incorrect: " << time << endl;
+		if (time != "NONE") {
+        	cout << "Time format is incorrect: " << time << endl;
+		}
         return "NONE";
     }
 
@@ -112,6 +116,15 @@ void writeToMaster(string filename) {
 }
 
 int main(int argc, char* argv[]) {
+	// argc is how many arguments are passed in
+	if (argc <= 1) {
+		// filename not given
+		cout << "Please give the input file as a parameter" << endl;
+	} else {
+		FILENAME = string(argv[1]);
+		cout << "Parsing input file: " << FILENAME << endl;
+	}
+
 	// initialize array elements
 	for (int i = 0; i < COLS; i++) {
 		for (int j = 0; j < MAX; j++) {
@@ -122,7 +135,7 @@ int main(int argc, char* argv[]) {
 
 	//---------------------------------READ RAW DATA FROM FILE-----------------------------------
 	ifstream fin;
-	fin.open("psy.csv");
+	fin.open(FILENAME);
 
 	if (!fin) {
 		cout << "Unable to open file" << endl;
@@ -139,7 +152,6 @@ int main(int argc, char* argv[]) {
 
 	// gets headers
 	while (!containsNewLine(cell)) {
-		cout << "b" << endl;
 		getline(fin, cell, ',');
 		headers[i] = cell;
 		i++;
@@ -175,7 +187,7 @@ int main(int argc, char* argv[]) {
 	//! FIXME: seg fault here :(
 	//---------------------------Fill 2D array-------------------------------
 	ifstream fin2;
-	fin2.open("psy.csv");
+	fin2.open(FILENAME);
 	getline(fin2, cell); // get the headers over with
 	int row = 0, col = 0;
 	while (col < 50) {
@@ -207,7 +219,8 @@ int main(int argc, char* argv[]) {
 
 	//---------------------------------Last Step(?) - write to master file------------------------
 
-	printMaster();
-	writeToMaster("master-test.csv");
+	//printMaster();
+	string MASTERNAME = FILENAME + "-perfect.csv";
+	writeToMaster(MASTERNAME);
     return 0;
 }
